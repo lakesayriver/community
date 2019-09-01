@@ -10,10 +10,4 @@ public class IndexController {
     public String index(){
         return "index";
     }
-    @GetMapping("/callback")
-    public String callback(@RequestParam(name="code") String code,@RequestParam(name="state") String state,Model model){
-        model.addAttribute("code",code);
-        model.addAttribute("state",state);
-        return "callback";
-    }
 }
