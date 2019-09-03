@@ -3,8 +3,17 @@ package com.hyj.demo1.DTO;
 public class AccessTokenDTO {
     private String client_id;
     private String client_secret;
+    private String redirect_uri;
     private String code;
     private String state;
+
+    public String getRedirect_uri() {
+        return redirect_uri;
+    }
+
+    public void setRedirect_uri(String redirect_uri) {
+        this.redirect_uri = redirect_uri;
+    }
 
     public String getClient_id() {
         return client_id;
