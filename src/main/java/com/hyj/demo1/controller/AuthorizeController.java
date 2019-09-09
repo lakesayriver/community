@@ -31,10 +31,10 @@ public class AuthorizeController {
     private String clientsecret;
 
     @GetMapping("/callback")
-    public String callback(@RequestParam(name="code") String code,
-                           @RequestParam(name="state") String state,
+    public String callback(@RequestParam(name = "code") String code,
+                           @RequestParam(name = "state") String state,
                            HttpServletRequest request,
-                           HttpServletResponse response){
+                           HttpServletResponse response) {
 
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(clientid);
@@ -45,12 +45,12 @@ public class AuthorizeController {
         String token = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser githubuser = githubProvider.getGithubUser(token);
         System.out.println(token);
-        if(request.getSession() != null) {
+        if (request.getSession() != null) {
             //如果登录成功
             request.getSession().setAttribute("user", githubuser);
             System.out.println(githubuser.getName());
 
-            User user=new User();
+            User user = new User();
             user.setAccount_id(String.valueOf(githubuser.getId()));
             user.setName(githubuser.getName());
             user.setToken(UUID.randomUUID().toString());
@@ -63,11 +63,8 @@ public class AuthorizeController {
             response.addCookie(cookie);
 
 
-
-
-
             return "redirect:/";
-        }else {
+        } else {
             //登录失败
             return "redirect:/";
         }

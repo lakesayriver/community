@@ -1,0 +1,12 @@
+body {
+    background-color: #efefef;
+}
+
+.main {
+    background-color: white;
+    margin: 30px;
+}
+
+.btn-submit {
+    border-radius: 12px;
+}

@@ -17,18 +17,19 @@ public class IndexController {
 
     @Autowired
     private UserMapper userMapper;
+
     @GetMapping("/")
-    public String index(HttpServletRequest request){
+    public String index(HttpServletRequest request) {
 
         Cookie[] requestCookies = request.getCookies();
-        if(requestCookies.length >0) {
+        if (requestCookies.length > 0) {
             for (Cookie requestCookie : requestCookies) {
                 if (requestCookie.getName().equals("token")) {
                     String token = requestCookie.getValue();
                     System.out.println(token);
                     User user = userMapper.findByToken(token);
                     if (user != null) {
-                        request.getSession().setAttribute("user",user);
+                        request.getSession().setAttribute("user", user);
                     }
                     break;
                 }
@@ -36,5 +37,10 @@ public class IndexController {
         }
 
         return "index";
+    }
+
+    @GetMapping("/publish")
+    public String publish() {
+        return "publish";
     }
 }
